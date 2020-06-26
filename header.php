@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><?php bloginfo('name'); ?></title>
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/styles.css">
+  <link rel="shortcut icon" href="<?php echo wp_get_document_title(); ?>/assets/images/common/favicon.ico" />
+  <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn:400i" rel="stylesheet" />
+  <?php wp_head(); ?>
+  <meta name="google-site-verification" content="y9yndf6qsF6N1MZ5xvrj4mOmYGfxCCdr4OUuQx5cILg" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165445639-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date()); 
+
+    gtag('config', 'UA-165445639-1');
+  </script>
+</head>
+<body <?php body_class(); ?>>
+  <div class="container">
+    <header id="header">
+      <div class="header-inner">
+        <div class="logo">
+          <a class="logo-header" href="/">
+            <img src="<?php echo get_template_directory_uri() ?>/assets/images/common/logo-main.svg" class="main-logo" alt="PACIFIC MALL DEVELOPMENT" />
+            <img src="<?php echo get_template_directory_uri() ?>/assets/images/common/logo-fixed.svg" class="fixed-logo" alt="PACIFIC MALL DEVELOPMENT" />
+          </a>
+        </div>
+        <button class="toggle-menu js-toggoleNav">
+          <span class="toggle-line">メニュー</span>
+        </button>
+        <div class="header-nav">
+          <nav class="global-nav">
+            <?php
+              wp_nav_menu(
+                array(
+                  'theme_location' => 'place_global',
+                  'container' => false,
+                )
+                );
+            ?>
+          </nav>
+          <form class="search-form" role="search" method="get" action="<?php echo esc_url( home_url() ); ?>">
+            <div class="search-box">
+              <input type="text" class="search-input" name="s" placeholder="キーワードを入力してください" />
+              <button type="submit" class="button-submit"></button>
+            </div>
+            <div class="search-buttons">
+              <button type="button" class="close-icon js-searchIcon"></button>
+              <button type="button" class="search-icon js-searchIcon"></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </header>
+  <?php if(is_front_page()): ?>
+    <section class="section-contents" id="keyvisual">
+      <img src="<?php echo get_template_directory_uri() ?>/assets/images/bg-section-keyvisual.jpg" alt="MAIN IMAGE" />
+      <div class="wrapper">
+        <h1 class="site-title"><?php bloginfo('description'); ?></h1>
+        <p class="site-caption">私たちパシフィックモール開発は<br>
+        世界各地のショッピングモール開発を通じて<br>人と人、人と地域を結ぶお手伝いをしています。</p>
+      </div>
+    </section>
+  <?php else: ?>
+    <div class="wrap">
+      <div id="primary" class="content-area">
+        <main>
+          <div class="page-contents">
+            <div class="page-head">
+              <?php echo get_main_image(); ?>
+              <div class="wrapper">
+                <span class="page-title-en"><?php echo get_main_en_title(); ?></span>
+                <h2 class="page-title"><?php echo get_main_title(); ?></h2>
+              </div>
+            </div>
+          <div class="page-container">
+  <?php 
+    if(function_exists('bread_crumb')):
+      bread_crumb();
+    endif;
+  ?>    
+  <?php endif; ?>
